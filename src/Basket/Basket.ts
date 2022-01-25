@@ -6,8 +6,8 @@ class Basket {
   private static readonly BASKET_CLAS = 'basket';
   private static readonly OPEN_POPUP_CLASS = 'basket--is-popup-active';
   private static readonly BASKET_POPUP_CLASS = 'basket__popup';
-  private static readonly PRODUCTS_LIST_CLASS: string = 'basket__products-list';
-  private static readonly PRODUCTS_LIST_ITEM_CLASS: string = 'basket__list-item';
+  private static readonly PRODUCTS_LIST_CLASS = 'basket__products-list';
+  private static readonly PRODUCTS_LIST_ITEM_CLASS = 'basket__list-item';
 
   private readonly rootElement: HTMLDivElement;
   private readonly storage: Storage<BasketProduct>;
@@ -28,6 +28,7 @@ class Basket {
   }
 
   public addToBasket(product: BasketProduct): void {
+
     if(this.isProductAlreadyInBasket(product.id)) {
       this.changeProductQuantity(product.id, product.quantity);
     } else {
@@ -56,7 +57,7 @@ class Basket {
       if(product.id !== id ) {
         return;
       }
-      product.quantity =+ newQuantity;
+      product.quantity += newQuantity;
       if(product.quantity <= 0) {
         indexProductToRemove = index;
       }
@@ -94,15 +95,17 @@ class Basket {
     while(this.basketProductsList.firstChild) {
       this.basketProductsList.firstChild.remove();
     }
-    this.products.forEach(this.createListElement);
+    this.products.forEach(product => {
+      this.createListElement(product);
+    });
 
   }
 
   private readonly  createListElement = (product: BasketProduct): void => {
     const listElement = document.createElement('li');
     const productInfoElement = document.createElement('p');
-    const incBtn = document.createElement('Btn');
-    const decBtn = document.createElement('Btn');
+    const incBtn = document.createElement('button');
+    const decBtn = document.createElement('button');
 
     productInfoElement.textContent = `${product.name}, ilość ${product.quantity}`;
     incBtn.textContent = '+';
