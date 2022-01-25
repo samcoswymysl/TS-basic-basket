@@ -1,3 +1,4 @@
+import Basket from './Basket/Basket';
 import BasketStorage from './BasketStorage/BasketStorage';
 import './global-styles.scss';
 import Router from './Router/Router';
@@ -20,7 +21,10 @@ const backendButton = document.getElementById('be-button');
 
 const storage = new BasketStorage();
 const router = new Router();
+const basket = new Basket('basket', storage);
 
+// eslint-disable-next-line no-console
+console.log(basket);
 // eslint-disable-next-line no-console
 router.addRoute({ name: 'frontend', renderFunction: () => console.log('frontend') });
 // eslint-disable-next-line no-console
