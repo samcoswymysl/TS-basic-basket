@@ -4,7 +4,6 @@
   "description": "Boilerplate for frontend projects configured for React library and using more valuable tools for development",
   "main": "index.ts",
   "scripts": {
-    "st": "node index.js",
     "start": "webpack serve --mode=development",
     "build": "webpack --mode=production",
     "checkts": "tsc"
